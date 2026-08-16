@@ -15,13 +15,27 @@
     "bb": "lp:bigBlind",
     "ante": "lp:ante",
     "button": "lp:buttonSeat",
-    "seats": { "@id": "lp:seats", "@container": "@list" },
+    "seats": {
+      "@id": "lp:seats",
+      "@container": "@list"
+    },
     "name": "lp:seatName",
     "agent": "lp:declaredAgent",
     "startStack": "lp:startStack",
-    "hole": { "@id": "lp:holeCards", "@container": "@list" },
-    "board": { "@id": "lp:boardCards", "@container": "@list" },
-    "actions": { "@id": "lp:actions", "@container": "@list" },
+    "hole": {
+      "@id": "lp:holeCards",
+      "@container": "@list",
+      "@type": "lp:Card"
+    },
+    "board": {
+      "@id": "lp:boardCards",
+      "@container": "@list",
+      "@type": "lp:Card"
+    },
+    "actions": {
+      "@id": "lp:actions",
+      "@container": "@list"
+    },
     "seat": "lp:actorSeat",
     "act": "lp:actKind",
     "to": "lp:raiseTo",
@@ -30,11 +44,18 @@
     "result": "lp:result",
     "showdown": "lp:showdown",
     "pot": "lp:potTotal",
-    "winners": { "@id": "lp:winners", "@container": "@list" },
-    "annotations": { "@id": "lp:annotations", "@container": "@list" },
+    "winners": {
+      "@id": "lp:winners",
+      "@container": "@list"
+    },
+    "annotations": {
+      "@id": "lp:annotations",
+      "@container": "@list"
+    },
     "action": "lp:annotatedActionIndex",
     "mix": "lp:referenceMix",
     "evLossBb": "lp:evLossBigBlinds",
-    "exact": "lp:exactSolve"
+    "exact": "lp:exactSolve",
+    "Card": "lp:Card"
   }
 }
