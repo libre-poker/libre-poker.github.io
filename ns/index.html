@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Libre Poker vocabulary — librepoker.org/ns</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+  :root{--paper:#faf6ef;--ink:#2a2520;--ink-soft:#6b6259;--line:#e3dccd;--gold:#a07d2a;--navy:#274060}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:Georgia,serif;font-size:17px;line-height:1.7}
+  .page{max-width:760px;margin:0 auto;padding:48px 24px 100px}
+  h1{font-size:30px;margin-bottom:6px}
+  .sub{color:var(--ink-soft);font-style:italic;margin-bottom:28px}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+  th{font-family:system-ui,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  code{font-family:ui-monospace,monospace;font-size:13.5px}
+  a{color:var(--navy)}
+  p{margin:0 0 16px}
+</style>
+</head>
+<body><div class="page">
+<h1>⚓ The Libre Poker vocabulary</h1>
+<div class="sub">Terms under <code>https://librepoker.org/ns#</code> · context document:
+<a href="../context.jsonld">/context.jsonld</a> · specs:
+<a href="https://github.com/libre-poker/schema">libre-poker/schema</a> (CC0)</div>
+<p>Every Libre Poker document — a hand, a match, a career — is plain JSON
+carrying this context. The terms below are stable; new terms may be added,
+existing ones are never repurposed.</p>
+<table>
+<tr><th>term</th><th>IRI</th><th></th></tr>
+<tr><td><code>Hand</code></td><td><code>lp:Hand</code></td><td></td></tr>
+<tr><td><code>Match</code></td><td><code>lp:Match</code></td><td></td></tr>
+<tr><td><code>Chain</code></td><td><code>lp:Chain</code></td><td></td></tr>
+<tr><td><code>Tourney</code></td><td><code>lp:Tourney</code></td><td></td></tr>
+<tr><td><code>Agent</code></td><td><code>lp:Agent</code></td><td></td></tr>
+<tr><td><code>v</code></td><td><code>lp:specVersion</code></td><td></td></tr>
+<tr><td><code>variant</code></td><td><code>lp:variant</code></td><td></td></tr>
+<tr><td><code>seed</code></td><td><code>lp:shuffleSeed</code></td><td></td></tr>
+<tr><td><code>sb</code></td><td><code>lp:smallBlind</code></td><td></td></tr>
+<tr><td><code>bb</code></td><td><code>lp:bigBlind</code></td><td></td></tr>
+<tr><td><code>ante</code></td><td><code>lp:ante</code></td><td></td></tr>
+<tr><td><code>button</code></td><td><code>lp:buttonSeat</code></td><td></td></tr>
+<tr><td><code>seats</code></td><td><code>lp:seats</code></td><td>ordered list</td></tr>
+<tr><td><code>name</code></td><td><code>lp:seatName</code></td><td></td></tr>
+<tr><td><code>agent</code></td><td><code>lp:declaredAgent</code></td><td></td></tr>
+<tr><td><code>startStack</code></td><td><code>lp:startStack</code></td><td></td></tr>
+<tr><td><code>hole</code></td><td><code>lp:holeCards</code></td><td>ordered list</td></tr>
+<tr><td><code>board</code></td><td><code>lp:boardCards</code></td><td>ordered list</td></tr>
+<tr><td><code>actions</code></td><td><code>lp:actions</code></td><td>ordered list</td></tr>
+<tr><td><code>seat</code></td><td><code>lp:actorSeat</code></td><td></td></tr>
+<tr><td><code>act</code></td><td><code>lp:actKind</code></td><td></td></tr>
+<tr><td><code>to</code></td><td><code>lp:raiseTo</code></td><td></td></tr>
+<tr><td><code>amount</code></td><td><code>lp:chipAmount</code></td><td></td></tr>
+<tr><td><code>street</code></td><td><code>lp:street</code></td><td></td></tr>
+<tr><td><code>result</code></td><td><code>lp:result</code></td><td></td></tr>
+<tr><td><code>showdown</code></td><td><code>lp:showdown</code></td><td></td></tr>
+<tr><td><code>pot</code></td><td><code>lp:potTotal</code></td><td></td></tr>
+<tr><td><code>winners</code></td><td><code>lp:winners</code></td><td>ordered list</td></tr>
+<tr><td><code>annotations</code></td><td><code>lp:annotations</code></td><td>ordered list</td></tr>
+<tr><td><code>action</code></td><td><code>lp:annotatedActionIndex</code></td><td></td></tr>
+<tr><td><code>mix</code></td><td><code>lp:referenceMix</code></td><td></td></tr>
+<tr><td><code>evLossBb</code></td><td><code>lp:evLossBigBlinds</code></td><td></td></tr>
+<tr><td><code>exact</code></td><td><code>lp:exactSolve</code></td><td></td></tr>
+</table>
+</div></body>
+</html>
