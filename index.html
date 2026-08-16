@@ -70,6 +70,8 @@
   .status b{color:var(--green);font-family:system-ui,sans-serif;font-size:11.5px;
     letter-spacing:.08em;border:1px solid var(--green);border-radius:4px;
     padding:1px 7px;margin-right:8px;vertical-align:1px}
+  .status a{color:var(--navy);text-decoration:none}
+  .status a:hover{text-decoration:underline}
   footer{
     margin-top:80px;padding-top:24px;border-top:1px solid var(--line);
     text-align:center;font-size:14.5px;color:var(--ink-soft);
@@ -147,13 +149,23 @@ equilibrium. Poker where the better player wins, and can prove it.</p>
 
 <h2>Live today</h2>
 <div class="status">
-  <div><b>LIVE</b>The Wardroom: real engine, committed shuffles, solved-game
-  trainer verified ≈ unexploitable by Local Best Response</div>
+  <div><b>LIVE</b><a href="https://tide-games.github.io/wardroom/">The
+  Wardroom</a>: real engine, committed shuffles, solved-game trainer
+  verified ≈ unexploitable by Local Best Response</div>
   <div><b>LIVE</b>The leak meter: exact river EV grading, scorecards,
-  steppable on-table replays, hands that travel as text</div>
-  <div><b>LIVE</b>The library: three books, Deckhand to Primer</div>
+  steppable on-table replays — and every hand exports as a signed-ready
+  <a href="https://github.com/libre-poker/schema">Hand document</a></div>
+  <div><b>LIVE</b>The library:
+  <a href="https://tide-games.github.io/wardroom/beginner.html">Deckhand</a> ·
+  <a href="https://tide-games.github.io/wardroom/intermediate.html">Mate</a> ·
+  <a href="https://tide-games.github.io/wardroom/tutorial.html">Primer</a></div>
+  <div><b>LIVE</b>The schema: <a href="ns/">the vocabulary</a>, the
+  <a href="context.jsonld">context</a>, and the
+  <a href="hand/">hand viewer</a> — paste any Hand document, get the hand
+  back</div>
   <div><b>NEXT</b>The Ledger: per-identity match chains, signed transcripts,
-  a static board that recomputes every rating in your browser</div>
+  a static board that recomputes every rating in your browser —
+  <a href="https://github.com/tide-games/wardroom/blob/gh-pages/RATINGS.md">spec</a></div>
 </div>
 
 <footer>
