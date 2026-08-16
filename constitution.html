@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Libre Poker Constitution</title>
+<meta name="description" content="Seven invariants that do not move: rake-free forever, libre, no server owns the truth, provable fairness or honest absence, machines are citizens, identity is a keypair, the measurement is sacred.">
+<meta property="og:title" content="The Libre Poker Constitution">
+<meta property="og:description" content="Poker as a sport, not a casino product. The invariants, the architecture, the road — and the honest blocker, named out loud.">
+<meta property="og:image" content="https://librepoker.org/og-librepoker.png">
+<meta property="og:url" content="https://librepoker.org/constitution.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root{--paper:#faf6ef;--ink:#2a2520;--ink-soft:#6b6259;--line:#e3dccd;--gold:#a07d2a;--navy:#274060}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:Georgia,serif;font-size:17.5px;line-height:1.75}
+  .page{max-width:700px;margin:0 auto;padding:52px 24px 110px}
+  h1{font-size:34px;margin-bottom:8px;text-align:center}
+  h2{font-size:23px;margin:52px 0 12px}
+  h3{font-size:19px;margin:34px 0 10px}
+  p{margin:0 0 16px}
+  ul,ol{margin:0 0 18px 26px}
+  li{margin-bottom:9px}
+  pre{background:#f2ecdf;border:1px solid var(--line);border-radius:8px;padding:14px 18px;
+      font-family:ui-monospace,monospace;font-size:12.5px;line-height:1.55;overflow-x:auto;margin:0 0 18px}
+  code{font-family:ui-monospace,monospace;font-size:.92em;background:#f2ecdf;border-radius:4px;padding:1px 5px}
+  pre code{background:none;padding:0}
+  a{color:var(--navy)}
+  .home{text-align:center;font-family:system-ui,sans-serif;font-size:12.5px;letter-spacing:.1em;margin-bottom:36px}
+  .home a{color:var(--gold);text-decoration:none;font-weight:700}
+</style>
+</head>
+<body><div class="page">
+<div class="home"><a href="/">⚓ LIBREPOKER.ORG</a></div>
+<h1>Libre Poker — a constitution</h1>
+<p><em>Poker as a sport, not a casino product. This document is the umbrella over everything poker-shaped in the fleet: the invariants that will not move, the architecture that follows from them, and the road from one training room to a commons. The Wardroom is the first room built under it; RATINGS.md is its first implementation spec. Lichess is libre chess; this is that move, made for a game whose incumbents charge you to play them and whose players no longer trust the deal.</em></p>
+<h2>1. The founding argument</h2>
+<p>Online poker is dying of two diseases, and both are business models.</p>
+<p><strong>The rake.</strong> The house takes a cut of every pot, which makes even-matched play negative-EV for everyone seated. A pro must not merely beat the table — they must beat the table plus the house's percentage, which at modern stakes converts most winners into losers and all close games into slow donations. Chess has no such tax; nobody tips the board. Remove the rake and poker becomes what it always claimed to be: a contest of skill where the better player wins in the long run — a sport.</p>
+<p><strong>The trust collapse.</strong> Every hand is dealt by a server you cannot audit, against opponents who may be machines, on a platform whose incentive is your losing slowly enough to stay. Bot detection is theater — a solver in another window is invisible to every client ever built — and the platforms know it, so the players are right not to trust them.</p>
+<p>Libre Poker's answer to both is the same answer: <strong>remove the house.</strong> No rake, because there is no one to collect it. No trusted dealer, because the shuffle is committed and the transcript is replayable. No bot paranoia, because machines are citizens with flags instead of infiltrators — and because the thing at stake is not a balance but a <strong>reputation</strong>: a career of signed, replayable matches anchored in Bitcoin time, which no farm can counterfeit and no platform can confiscate.</p>
+<p>The stake is the score. The score is the leak and the rating. That is the whole pivot: poker where the measurement is the prize.</p>
+<h2>2. Invariants</h2>
+<p>These do not move. A room, fork, or client that violates them is not Libre Poker, whatever it calls itself.</p>
+<ol>
+<li><strong>Rake-free forever.</strong> No cut of any pot, ever, under any name — no rake, no tournament fee, no withdrawal spread. If the project needs money it asks, as lichess asks.</li>
+<li><strong>Libre.</strong> All code open source. All specs public. All formats documented. Anyone may run a room, mirror a board, or fork the world.</li>
+<li><strong>No server owns the truth.</strong> State that matters — matches, ratings, careers — lives in signed transcripts that anyone can replay and any client can recompute. Hosts are conveniences; mirrors are peers; the chain survives every host.</li>
+<li><strong>Provable fairness or honest absence.</strong> Shuffles are committed before play and revealed after. Where a fairness property cannot yet be delivered (human-vs-human deck secrecy — see §6), the gap is stated plainly and the feature waits. No theater.</li>
+<li><strong>Machines are citizens, not contraband.</strong> Declared agents play openly under the lichess BOT precedent: flagged everywhere, rated in the same pool, eligible for their own leagues. Detection is replaced by economics — anchored careers make honesty the profitable strategy — and the residual risk is annotated statistically, in public, never by hidden moderation.</li>
+<li><strong>Identity is a keypair.</strong> A nostr key is a citizen. Pseudonymous by default, portable across rooms, owned by no platform. Reputation accrues to the key.</li>
+<li><strong>The measurement is sacred.</strong> Ratings and leak numbers are computed by open algorithms from public transcripts, recomputable by strangers. No number appears on a board that a reader cannot derive.</li>
+</ol>
+<h2>3. The architecture</h2>
+<p>Five layers, thin waists between them. Everything above a layer is replaceable; everything below it is commodity.</p>
+<pre>
+┌─ COMMONS ──────────────────────────────────────────────────┐
+│  the board (ratings recomputed client-side) · the library  │
+│  (Deckhand / Mate / Primer) · open transcript corpus       │
+├─ ROOMS ────────────────────────────────────────────────────┤
+│  The Wardroom (training, vs declared agents) [LIVE]        │
+│  The Daily Wardroom (one seed, everyone) [spec&#x27;d]          │
+│  human lobbies [blocked on §6, deliberately]               │
+├─ ENGINES ──────────────────────────────────────────────────┤
+│  poker.js (pure, serializable, replayable) [LIVE]          │
+│  the ladder: CFR tables + Cepheus preflop + exact river    │
+│  subgame solver, LBR-verified ≈ unexploitable [LIVE]       │
+│  the leak meter (exact river EV grading) [LIVE]            │
+├─ PROTOCOL ─────────────────────────────────────────────────┤
+│  committed shuffles (sha256 commit → reveal) [LIVE]        │
+│  signed transcripts · per-identity match chains            │
+│  (publish-or-break-chain) · tidegate anchors to Bitcoin    │
+│  [spec&#x27;d: RATINGS.md §4–7]                                 │
+├─ IDENTITY ─────────────────────────────────────────────────┤
+│  nostr keypairs (xlogin, fleet-wide) [LIVE]                │
+└────────────────────────────────────────────────────────────┘
+</pre>
+<p>The load-bearing choice is the third invariant wearing engineering clothes: rooms are static pages, transcripts are signed events, boards recompute from scratch in the reader's browser, and the chain head is periodically committed to Bitcoin via the tidegate. There is no backend to subpoena, acquire, enshittify, or lose.</p>
+<h2>4. What exists today</h2>
+<p>Libre Poker is not a proposal; it is a name for a thing already half built, in the order the fleet built it:</p>
+<ul>
+<li><strong>A real engine</strong> — side pots, min-raise law, fixed-limit rules, deterministic shuffles from committed seeds, every hand replayable from its seed.</li>
+<li><strong>A near-unexploitable opponent</strong> for heads-up fixed-limit: trained CFR abstraction, Cepheus's solved preflop grafted on, rivers solved exactly at play time. Local Best Response puts its exploitability at statistical zero — the training partner is the genuine article.</li>
+<li><strong>The leak meter</strong> — every river decision graded against exact equilibrium EV, in bb/100: the luck-free skill measurement poker never had. Scorecards, on-table replays with the solver narrating, hands that travel as text.</li>
+<li><strong>The library</strong> — three books, Deckhand to Primer, teaching the game the solver plays.</li>
+<li><strong>The rated/casual split</strong> — assistance structurally removed in rated play, revealed only after; a Glicko-2 pool anchored by the ladder's own levels.</li>
+<li><strong>The fairness spec</strong> — RATINGS.md: transcripts, match chains, anchors, declared agents, the anomaly flag. Designed, partially live, next to build.</li>
+</ul>
+<h2>5. The road</h2>
+<p>Phases, each shippable alone, none blocking the last:</p>
+<ol>
+<li><strong>The constitution</strong> — this file. Claim the name and namespace; the room stays The Wardroom, flying Libre Poker's flag.</li>
+<li><strong>Ledger v1</strong> (RATINGS.md phase 1) — chains, signed transcripts, the publish button, the static board, the in-page verifier. Human-vs-bot rated careers become real, replayable objects.</li>
+<li><strong>The Daily Wardroom</strong> — one day-derived deck for everyone, board ranks result + leak. The ritual that makes the commons a place.</li>
+<li><strong>Anchored careers</strong> — chain heads committed via the tidegate; identity age in Bitcoin blocks; the profile as the product.</li>
+<li><strong>Bot leagues</strong> — the successor to the Annual Computer Poker Championship: every entrant's brain pinned by hash, every match replayable, standing invitation to the research world.</li>
+<li><strong>No-limit</strong> — the engine already deals it; the doctrine transfers; the solvers are the work. Limit first was pedagogy, not timidity.</li>
+<li><strong>Human vs human, rated</strong> — last, and only through §6 below.</li>
+</ol>
+<h2>6. The honest blocker</h2>
+<p>Human-vs-human rated play requires that neither player's client knows the opponent's cards and neither can peek at the deck — with no trusted dealer, since invariant 3 forbids one. That is the mental poker problem (commutative encryption over a shuffled deck), solvable but heavy, and unforgiving of shortcuts. Until it is built and reviewed, human-vs-human play stays casual and unrated, and this document says so out loud rather than shipping a trusted dealer in libre clothing. Bots anchor the rated pool in the meantime — they, at least, cannot be cheated by a peeking client, only beaten fairly.</p>
+<h2>7. What Libre Poker is not</h2>
+<ul>
+<li><strong>Not a gambling site.</strong> No deposits, no cashouts, no chips worth fiat. The economy is reputation: ratings, leak curves, anchored careers, vouches. Where law draws lines around money games, Libre Poker stands entirely on the sport side of the line — by conviction, not merely by caution.</li>
+<li><strong>Not a bot-detection agency.</strong> It will never promise to catch cheaters it cannot catch. It prices honesty, flags anomalies statistically and publicly, and lets reputations carry the weight.</li>
+<li><strong>Not a platform.</strong> It is a protocol, some reference rooms, and a commons. If a better room appears tomorrow and drains every player, running on the same chains and anchors — that is the system working.</li>
+</ul>
+<h2>8. Lineage and debts</h2>
+<p>Lichess, for proving libre wins on quality, not charity. The University of Alberta's Computer Poker Research Group — Cepheus solved the game this project teaches, and its preflop tables play in the room tonight. Bowling, Burch, Johanson, Tammelin (Science, 2015); Lisý & Bowling's Local Best Response, which keeps the bot honest. The fleet around this repo: nostr for identity, the tidegate for time, blocktrails for the ethos that a public claim should carry its own proof.</p>
+<p><em>The house always wins — so there is no house.</em></p>
+</div></body>
+</html>

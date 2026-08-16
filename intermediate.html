@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mate's Handbook — from rules to reasons</title>
+<meta name="description" content="Book Two of the ship's library: the bridge from beginner to solved play. Ranges, equity, the two reasons to bet, board texture, the semi-bluff, and why the same spot has more than one right answer.">
+<meta property="og:title" content="The Mate's Handbook">
+<meta property="og:description" content="From rules to reasons — ranges, equity, the two reasons to bet, and the ideas that carry a beginner to the door of solved poker.">
+<meta property="og:image" content="https://librepoker.org/og-intermediate.png">
+<meta property="og:url" content="https://librepoker.org/intermediate.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --paper:#faf6ef; --ink:#2a2520; --ink-soft:#6b6259; --line:#e3dccd;
+    --gold:#a07d2a; --red:#b0413e; --green:#2e7d43; --navy:#274060;
+    --card:#fffdf8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:18px; line-height:1.75;
+  }
+  .page{max-width:680px;margin:0 auto;padding:56px 24px 120px}
+  header{margin-bottom:52px;text-align:center}
+  header .flag{font-size:13px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;font-family:system-ui,sans-serif;font-weight:700}
+  h1{font-size:40px;line-height:1.2;margin:14px 0 10px;font-weight:700}
+  header .sub{color:var(--ink-soft);font-style:italic;font-size:19px}
+  .library{
+    margin:22px auto 0;font-family:system-ui,sans-serif;font-size:12.5px;
+    letter-spacing:.06em;color:var(--ink-soft);
+  }
+  .library a{color:var(--navy);text-decoration:none}
+  .library a:hover{text-decoration:underline}
+  .library b{color:var(--gold)}
+  h2{font-size:26px;margin:72px 0 6px;line-height:1.3}
+  h2 .no{color:var(--gold);font-style:italic;margin-right:10px}
+  .epigraph{color:var(--ink-soft);font-style:italic;margin:0 0 22px;font-size:16px}
+  p{margin:0 0 20px}
+  .r{color:var(--red)}
+  .hand{
+    background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:18px 22px;margin:26px 0;font-size:16.5px;
+    box-shadow:0 1px 3px rgba(60,50,30,.06);
+  }
+  .hand .street{font-family:system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--gold);margin-top:10px}
+  .hand .street:first-child{margin-top:0}
+  .rule{border:none;border-top:1px solid var(--line);margin:40px auto;width:120px}
+  .maxim{
+    margin:30px 0;padding:16px 24px;border-left:3px solid var(--gold);
+    background:#f4eee1;font-size:19px;font-style:italic;border-radius:0 6px 6px 0;
+  }
+  table{width:100%;border-collapse:collapse;margin:24px 0;font-size:16px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{font-family:system-ui,sans-serif;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  td:last-child,th:last-child{text-align:right}
+  .kbd{font-family:ui-monospace,monospace;background:#efe9db;border:1px solid var(--line);border-radius:4px;padding:1px 7px;font-size:14.5px}
+  ul,ol{margin:0 0 20px 26px}
+  li{margin-bottom:8px}
+  .next{
+    margin-top:80px;padding:22px 26px;background:var(--card);
+    border:1px solid var(--line);border-radius:8px;text-align:center;
+  }
+  .next .lbl{font-family:system-ui,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .next a{color:var(--navy);font-size:20px;font-weight:700;text-decoration:none}
+  .next a:hover{text-decoration:underline}
+  .fin{text-align:center;color:var(--ink-soft);font-style:italic;margin-top:60px}
+  a{color:var(--navy)}
+  @media (max-width:520px){ body{font-size:16.5px} h1{font-size:31px} }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="flag">⚓ The Wardroom · Book Two</div>
+  <h1>The Mate's Handbook</h1>
+  <div class="sub">From rules to reasons — the bridge between playing your
+  cards and playing the game</div>
+  <nav class="library"><b>The ship's library:</b>
+    <a href="beginner.html">I. The Deckhand's Manual</a> ·
+    II. The Mate's Handbook ·
+    <a href="tutorial.html">III. The Wardroom Primer</a></nav>
+</header>
+
+<p>The deckhand's lessons — board reading, position, the pot's price, outs,
+and the discipline not to pay people off — will stop you losing. This book
+is about winning, and it begins with a promotion of perspective. The
+deckhand plays <em>his cards</em>. The mate plays the <em>situation</em>:
+what all of an opponent's possible hands look like, what share of the pot
+each side's collection truly owns, and — above everything — <em>why</em> a
+bet is being made. Learn the why and the game turns transparent; skip it and
+you can memorize moves forever and never know which one to reach for.</p>
+
+<h2><span class="no">I.</span> He doesn't have a hand either — he has a range</h2>
+<p class="epigraph">The single idea that separates the middle of poker from
+the bottom.</p>
+
+<p>You will never know your opponent's two cards, and the wonderful news is
+that you don't need to. What you can know — from how he's played the hand,
+and how he plays generally — is the <em>collection</em> of hands he could
+hold: his <strong>range</strong>. He raised before the flop? The 9-4s and
+J-2s leave the collection. He called a bet on an ace-high flop? The pure air
+thins out; pairs and draws remain. Every action is a sieve, and by the
+river, a player who was “anything” has become “one of a few dozen
+combinations.”</p>
+
+<p>Thinking in ranges rescues you from poker's oldest torment: “what does he
+<em>have</em>?” Wrong question — unanswerable, and the guess swings on
+mood. The mate's question is “what does he have <em>mostly</em>?” — and
+that one has an answer you can act on. When you catch yourself putting him
+on exactly ace-king and playing accordingly, you've slipped back to the
+deck. Climb up: he has a weighted collection, and you're playing against
+its average.</p>
+
+<div class="maxim">Play the range, not the guess.</div>
+
+<h2><span class="no">II.</span> Equity: your true share of the pot</h2>
+<p class="epigraph">Every pot already belongs to both of you, in proportion.</p>
+
+<p>Put your hand against his range and run every future card: some fraction
+of the time you finish best. That fraction is your <strong>equity</strong> —
+your rightful share of the pot if all hands were simply dealt to the end. A
+flush draw against top pair holds about 35%; a pair against two overcards is
+the famous coin flip; top pair against a worse top pair is a landslide.</p>
+
+<p>Equity turns the deckhand's pot-odds arithmetic into a complete engine.
+The price says what winning chance you <em>need</em>; equity says what you
+<em>hold</em>; call when you hold more than you need. But its deeper use is
+this: equity explains why the money goes in <em>now</em> rather than later.
+Betting with 65% equity isn't about the hands you fold out — every chip that
+enters the pot while you're the 65% is a chip you own 65 cents of on
+arrival. Strong hands bet partly to be paid — and partly because building
+the pot <em>while ahead</em> is itself the profit.</p>
+
+<h2><span class="no">III.</span> The two reasons to bet</h2>
+<p class="epigraph">There are only two. Everything else is superstition.</p>
+
+<p>Ask a table of beginners why they bet and you'll hear a folk taxonomy:
+“to protect my hand,” “to find out where I stand,” “to take control.”
+Here is the mate's full and complete list of reasons a bet makes money:</p>
+
+<ul>
+<li><strong>Value</strong> — a worse hand calls. Your equity when called
+exceeds your share of the price; the call pays you.</li>
+<li><strong>Bluff</strong> — a better hand folds. Equity that belonged to
+him is surrendered to you.</li>
+</ul>
+
+<p>That's the list. “Information” is what value bets and bluffs produce as
+exhaust, not a reason on its own — a bet made <em>only</em> to find out
+where you stand buys the answer at full price and does nothing with it.
+“Protection” is real but it is simply value's shadow — charging worse hands
+that might improve <em>is</em> a value bet. Before every bet you ever make,
+name which of the two you're doing: which worse hands call me, or which
+better hands fold? If you can name neither, you've found the third kind of
+bet — the donation — and the correct alternative was standing quietly
+still.</p>
+
+<div class="maxim">Every bet is a claim: worse hands call, or better hands
+fold. If you can't finish the sentence, don't make the bet.</div>
+
+<h2><span class="no">IV.</span> The board has moods</h2>
+<p class="epigraph">Texture: whom a flop befriends, and how fast the
+friendship expires.</p>
+
+<p>Boards come in temperaments. <b>K♠ <span class="r">7♦</span> 2♣</b> is
+<strong>dry</strong> — no draws, nothing coordinated; whoever was ahead on
+it will usually still be ahead on the river, and hands change value slowly.
+<b><span class="r">9♥</span> 8♥ 7♠</b> is <strong>wet</strong> — straights
+live, flushes loom, every turn card rearranges the standings. Texture sets
+the tempo of correct play:</p>
+
+<ul>
+<li>On <strong>dry</strong> boards, made hands can relax — small bets,
+patient lines, little fear of the next card. Bluffs need to be chosen well,
+because nothing scary will arrive to help them.</li>
+<li>On <strong>wet</strong> boards, made hands are perishable goods — value
+bets grow urgent (charge the draws while you're still ahead), and calls with
+one modest pair grow worse (too many rivers beat you).</li>
+<li>And ask of every flop: <em>whose range does it befriend?</em> An
+ace-high flop loves the preflop raiser; a middling connected flop loves the
+caller. The befriended range gets to bet more often — sometimes regardless
+of its actual two cards.</li>
+</ul>
+
+<h2><span class="no">V.</span> The check is not weakness</h2>
+<p class="epigraph">Medium hands earn by standing still.</p>
+
+<p>The deckhand learned not to pay people off. The mate learns the fuller
+truth that was hiding underneath: hands in the <em>middle</em> of your range
+— decent pairs, modest tops — earn their money passively. Bet them and
+watch chapter III collapse: no worse hand calls, no better hand folds. Check
+them, and something better happens — opponents holding the air you couldn't
+get paid by start <em>bluffing at you</em>, and their bluffs become your
+value. A medium hand that checks and calls is called a
+<strong>bluff-catcher</strong>, and deploying it on purpose — rather than
+betting it out of nerves — is the most reliable single upgrade at this
+stage of the game.</p>
+
+<p>Notice what this does to how your <em>whole range</em> plays: your strong
+hands bet, your hopeless hands sometimes bluff, and your middle stands
+guard. Each family has a job. That division of labor is the actual content
+of the word “strategy.”</p>
+
+<h2><span class="no">VI.</span> Aggression with a future: the semi-bluff</h2>
+<p class="epigraph">The happiest bet in poker profits twice.</p>
+
+<p>Now combine equity with the bluff. Bet a flush draw and count your ways
+to win: he folds — the pot is yours immediately, with the worst hand. He
+calls — a third of the deck still crowns you, and the pot you'd win got
+bigger while you had the fold equity as a cushion. This is the
+<strong>semi-bluff</strong>, and it is why strong players seem so much more
+aggressive than the deckhand thinks is safe: their “bluffs” are rarely
+hopeless. They are bets that win two ways, made with hands that were going
+to play anyway.</p>
+
+<p>The mate's rule for choosing them: aggression wants <em>equity or fold
+equity, ideally both</em>. A draw bets happily. Pure air bluffs only where
+the story adds up. And the middle — say it once more — stands still.</p>
+
+<h2><span class="no">VII.</span> The same spot has more than one right answer</h2>
+<p class="epigraph">A first look over the bridge, at what Book Three holds.</p>
+
+<p>One more promotion of perspective and the handbook is done. The deckhand
+wants a rulebook: <em>this</em> hand, <em>this</em> board, do <em>this</em>.
+But watch what happens when a good player faces the same situation twice —
+sometimes a different action comes out. Not indecision:
+<strong>frequencies</strong>. If you bet every strong hand and checked every
+weak one, your bets would be a signed confession; opponents could fold
+exactly when you have it and attack exactly when you don't. Skilled play
+mixes — mostly this action, sometimes that one — precisely so that no
+single action gives the hand away.</p>
+
+<p>Here is the astonishing part, and the door this book leaves you standing
+before: for the game this room trains — heads-up fixed-limit hold'em —
+those frequencies have been <em>computed</em>. The game is solved. There is
+a strategy that cannot be beaten in the long run, it plays at this table,
+and when you press the hint it tells you its actual numbers — check 98%,
+raise 46% — for the exact spot you're in. Book Three is a tour of that
+solution's mind: why the middle checks, why junk makes the best bluffs, why
+seven-high sometimes calls a river bet, and how a meter can measure — in
+big blinds, exactly — how far from perfect your evening was.</p>
+
+<h2><span class="no">VIII.</span> The mate's practice regimen</h2>
+<p class="epigraph">Turning chapters into reflexes.</p>
+
+<ul>
+<li><strong>Play heads-up (⚔), casual, coach off.</strong> Real decisions
+first; the chart's opinion after. Before each bet, finish chapter III's
+sentence aloud: <em>worse calls, or better folds?</em></li>
+<li><strong>Turn on the leak chip 🎯</strong> (key <span class="kbd">5</span>)
+— it scores your river decisions against the exact solution, in bb/100,
+live. Under 5 is the historical pro bar; watch it as a trend, not a
+verdict.</li>
+<li><strong>After each match, open the scorecard and replay the red
+rows.</strong> Both hands face up. For every mistake, ask the range
+question: <em>what was his collection, and which family was my hand in —
+value, bluff, or bluff-catcher?</em> Miscategorized family is the
+intermediate leak; the replays will show you yours.</li>
+<li><strong>The 📋 copy button</strong> puts any hand — actions, chart
+mixes, exact EV losses — on your clipboard as text. Argue with a friend or
+an AI; the numbers referee.</li>
+</ul>
+
+<hr class="rule">
+
+<p>That's the bridge crossed: ranges instead of guesses, equity instead of
+hope, two honest reasons to bet, boards with moods, a middle that stands
+guard, aggression that profits twice, and frequencies instead of a rulebook.
+You are no longer playing your cards; you are playing the situation. What
+remains is to meet the strategy that plays the situation <em>perfectly</em>
+— and to start measuring your distance from it.</p>
+
+<div class="next">
+  <div class="lbl">Next in the ship's library</div>
+  <a href="tutorial.html">Book Three — The Wardroom Primer</a>
+  <div style="color:var(--ink-soft);font-style:italic;margin-top:4px">
+  solved poker, one hand at a time — with the solver at the table</div>
+</div>
+
+<p class="fin">⚓<br>written aboard, between hands</p>
+
+</div>
+</body>
+</html>

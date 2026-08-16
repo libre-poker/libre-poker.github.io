@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wardroom Primer — how to stop giving your chips away</title>
+<meta name="description" content="A short book on playing solved poker, learned one hand at a time. The one question behind every bet, four lessons from real hands with exact solver numbers, and the leak meter as a training method.">
+<meta property="og:title" content="The Wardroom Primer">
+<meta property="og:description" content="How to stop giving your chips away — a short book on playing solved poker, one hand at a time. Every example a real hand, every number from the solver at the table.">
+<meta property="og:image" content="https://librepoker.org/og-tutorial.png">
+<meta property="og:url" content="https://librepoker.org/tutorial.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --paper:#faf6ef; --ink:#2a2520; --ink-soft:#6b6259; --line:#e3dccd;
+    --gold:#a07d2a; --red:#b0413e; --green:#2e7d43; --navy:#274060;
+    --card:#fffdf8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:18px; line-height:1.75;
+  }
+  .page{max-width:680px;margin:0 auto;padding:56px 24px 120px}
+  header{margin-bottom:64px;text-align:center}
+  header .flag{font-size:13px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;font-family:system-ui,sans-serif;font-weight:700}
+  h1{font-size:40px;line-height:1.2;margin:14px 0 10px;font-weight:700}
+  header .sub{color:var(--ink-soft);font-style:italic;font-size:19px}
+  .library{
+    margin:22px auto 0;font-family:system-ui,sans-serif;font-size:12.5px;
+    letter-spacing:.06em;color:var(--ink-soft);
+  }
+  .library a{color:var(--navy);text-decoration:none}
+  .library a:hover{text-decoration:underline}
+  .library b{color:var(--gold)}
+  h2{font-size:26px;margin:72px 0 6px;line-height:1.3}
+  h2 .no{color:var(--gold);font-style:italic;margin-right:10px}
+  .epigraph{color:var(--ink-soft);font-style:italic;margin:0 0 22px;font-size:16px}
+  p{margin:0 0 20px}
+  p+p{text-indent:0}
+  em{font-style:italic}
+  strong{font-weight:700}
+  .r{color:var(--red)} .b{color:var(--ink)}
+  .hand{
+    background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:18px 22px;margin:26px 0;font-size:16.5px;
+    box-shadow:0 1px 3px rgba(60,50,30,.06);
+  }
+  .hand .street{font-family:system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--gold);margin-top:10px}
+  .hand .street:first-child{margin-top:0}
+  .hand .mix{color:var(--ink-soft);font-size:15px}
+  .hand .fold{color:var(--red);font-weight:700}
+  .hand .callw{color:var(--green);font-weight:700}
+  .hand .betw{color:var(--gold);font-weight:700}
+  .rule{border:none;border-top:1px solid var(--line);margin:40px auto;width:120px}
+  .maxim{
+    margin:30px 0;padding:16px 24px;border-left:3px solid var(--gold);
+    background:#f4eee1;font-size:19px;font-style:italic;border-radius:0 6px 6px 0;
+  }
+  table{width:100%;border-collapse:collapse;margin:24px 0;font-size:16px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{font-family:system-ui,sans-serif;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  td:last-child,th:last-child{text-align:right}
+  .kbd{font-family:ui-monospace,monospace;background:#efe9db;border:1px solid var(--line);border-radius:4px;padding:1px 7px;font-size:14.5px}
+  ul,ol{margin:0 0 20px 26px}
+  li{margin-bottom:8px}
+  .fin{text-align:center;color:var(--ink-soft);font-style:italic;margin-top:80px}
+  a{color:var(--navy)}
+  @media (max-width:520px){ body{font-size:16.5px} h1{font-size:31px} }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="flag">⚓ The Wardroom · Book Three</div>
+  <h1>The Wardroom Primer</h1>
+  <div class="sub">How to stop giving your chips away — a short book on playing
+  solved poker, learned one hand at a time</div>
+  <nav class="library"><b>The ship's library:</b>
+    <a href="beginner.html">I. The Deckhand's Manual</a> ·
+    <a href="intermediate.html">II. The Mate's Handbook</a> ·
+    III. The Wardroom Primer</nav>
+</header>
+
+<p>This little book comes out of an evening at the table. Every example in it
+is a real hand played in this room against the ship's own bot — a bot whose
+preflop play is <em>solved</em> (it plays Cepheus's published strategy, the
+program that essentially closed heads-up limit hold'em in 2015) and whose
+river play is computed exactly, hand by hand, while you sit there deciding.
+When the chart in these pages says <em>check 98%</em>, that is not a pundit's
+opinion. It is what equilibrium does.</p>
+
+<p>You could read a hundred strategy books and not find that sentence. Poker
+literature is mostly folklore — good folklore, tested folklore, but folklore:
+distilled experience, argued by analogy. This room is different. The game you
+practice here has been solved by machines, the solution is wired into the
+table you play on, and a meter measures — exactly, in big blinds — what your
+decisions cost against it. The folklore era gave us maxims. The solver era
+lets us check which maxims were true.</p>
+
+<p>It turns out the true ones fit in one short book.</p>
+
+<h2><span class="no">I.</span> The only question in poker</h2>
+<p class="epigraph">Everything else is commentary.</p>
+
+<p>Before any bet you ever make, there is one question, and this book is
+mostly that question wearing different hats:</p>
+
+<div class="maxim">Who pays me if I bet? If the honest answer is “only better
+hands,” don't.</div>
+
+<p>A bet earns money in exactly two ways. Either a <em>worse</em> hand pays it
+— that's a value bet — or a <em>better</em> hand folds to it — that's a
+bluff. That's the whole list. A bet that does neither — that folds out only
+the hands you already beat and gets called only by hands that beat you — is
+not aggression. It is a donation with good posture.</p>
+
+<p>From this one question, the entire shape of correct play unfolds into
+three families:</p>
+
+<ul>
+<li><strong>Strong hands bet.</strong> Worse hands pay them. That's value.</li>
+<li><strong>Hopeless hands bet.</strong> Better hands fold to them. That's
+bluffing — and as we'll see, the best bluffs are chosen from your
+<em>worst</em> holdings, not your almost-good ones.</li>
+<li><strong>Everything in the middle checks and calls.</strong> The middle
+can't get paid by worse and can't move better. Its job is different: it is a
+<em>bluff-catcher</em>, and bluff-catchers earn by letting the opponent hang
+himself.</li>
+</ul>
+
+<p>Players lose most of their money by misfiling the middle. The anxious
+instinct with a mediocre pair is to bet it — “to find out where I stand,” “to
+protect it.” The chart's cold answer, hand after hand: stand still. You find
+out where you stand for free at showdown. What follows are four hands from
+one evening that teach the three families and their consequences better than
+any abstraction could.</p>
+
+<h2><span class="no">II.</span> The middle stands still</h2>
+<p class="epigraph">Second pair, out of position, and the urge to “find out.”</p>
+
+<div class="hand">
+  <div class="street">You hold</div>
+  <div><b>10♣ 9♠</b> — first to act, out of position, in a raised pot.</div>
+  <div class="street">Flop&nbsp; K♠ 5♠ <span class="r">10♥</span></div>
+  <div>Second pair. The chart: <span class="mix"><span class="callw">check
+  98%</span> · <span class="betw">bet 2%</span></span></div>
+</div>
+
+<p>Second pair on a king-high board is the textbook middle. Run the question:
+who pays a bet? Every king calls and beats you. Fives and tens have you in
+bad shape or crushed. And everything you're ahead of — queen-high, jack-high,
+the whiffed connectors — folds the moment you bet, paying you nothing. The
+bet can't get value and can't bluff anything out that mattered. It only
+builds a pot for the times you're behind.</p>
+
+<p>The check, meanwhile, is not surrender. It is a trap with the safety off.
+Your opponent's range is full of exactly that air you can't get paid by — and
+air <em>wants</em> to bluff at a checked flop. Second pair is a premium
+bluff-catcher: it beats every bluff he can invent. So you check, he stabs,
+and you call — and his bluffs, which would have folded to your bet for free,
+pay you a street of value instead.</p>
+
+<p>When he did bet that flop, the chart read: <em>fold 0% · call 90% · raise
+10%</em>. Fold zero — you're getting five to one against a range bloated with
+worse. Call ninety — raising would just re-open the betting and fold out the
+very bluffs you fished for. The plan begun by checking is completed by
+calling. The middle stands still, twice.</p>
+
+<div class="maxim">A medium hand does its earning by inaction: it checks to
+keep worse hands bluffing, and calls to keep them paying.</div>
+
+<h2><span class="no">III.</span> One card, new hand</h2>
+<p class="epigraph">The same two cards are not the same hand on every street.</p>
+
+<div class="hand">
+  <div class="street">Turn&nbsp; K♠ 5♠ <span class="r">10♥</span> J♠</div>
+  <div>Still 10♣ 9♠. The chart, having checked 98% one
+  street ago: <span class="mix"><span class="callw">check 12%</span> ·
+  <span class="betw">bet 88%</span></span></div>
+</div>
+
+<p>The jack of spades fell, and the chart flipped from near-pure passivity to
+near-pure aggression with the same two cards. Nothing is inconsistent. The
+<em>hand changed category</em>. Count what that one card did: the 9♠ now
+carries a flush draw (nine outs), the 9-10 now needs one queen for a straight
+(four more), and the pair of tens still beats all his air. Roughly a third of
+the deck now improves you to a hand that beats nearly everything.</p>
+
+<p>That class of holding — big equity, not yet best — is the
+<strong>semi-bluff</strong>, and it is the happiest hand in poker, because it
+profits both ways. When he folds, you win a pot you had no right to yet.
+When he calls, you're drawing at a third of the deck with the pot already
+swollen. Compare the flop bet we refused: that one had <em>neither</em>
+consolation. The middle checks; the draw bets. Same cards, different street,
+opposite family.</p>
+
+<div class="maxim">Re-ask the only question on every street. The answer has a
+one-card memory.</div>
+
+<h2><span class="no">IV.</span> Your worst hands are your best bluffs</h2>
+<p class="epigraph">Junk, therefore weapon.</p>
+
+<div class="hand">
+  <div class="street">You hold</div>
+  <div><b>5♣ 7♠</b> — seven-high, facing a turn bet.</div>
+  <div class="street">Turn&nbsp; 4♣ <span class="r">8♥</span> J♠ <span class="r">2♥</span></div>
+  <div>The chart: <span class="mix"><span class="fold">fold 2%</span> ·
+  <span class="callw">call 51%</span> · <span class="betw">raise 46%</span></span></div>
+</div>
+
+<p>The natural read of seven-high is “junk, give up.” The chart folds it two
+percent of the time. Two percent! The rest divides between calling — you're
+getting five to one, and any six makes you a straight nobody will see coming
+— and, remarkably, <em>raising almost half the time</em>. Understand why, and
+you understand bluffing better than most people who play for money.</p>
+
+<p>An equilibrium strategy must bluff — if its raises were only ever strong,
+opponents could fold everything else and never pay them. So it needs bluff
+candidates, and it chooses them by three criteria. First, <strong>no
+showdown value to waste</strong>: a hand like ace-high wins showdowns, so
+spending it as a bluff throws away real equity; seven-high has nothing to
+waste. Second, <strong>outs as a backup</strong>: when the bluff gets called,
+the gutshot still arrives sometimes, and arrives disguised. Third,
+<strong>no blockers to his folds</strong>: seven-five holds none of the cards
+he needs to have in the hands you want him to fold. Your worst holdings meet
+all three tests. The almost-good ones fail the first.</p>
+
+<div class="maxim">Bluff from the bottom of your range, not the middle. The
+bottom has nothing to lose; the middle has a showdown to protect.</div>
+
+<h2><span class="no">V.</span> The river: where value is relative</h2>
+<p class="epigraph">The outs are spent. What remains is the truth.</p>
+
+<div class="hand">
+  <div class="street">River&nbsp; 4♣ <span class="r">8♥</span> J♠ <span class="r">2♥</span> 9♠</div>
+  <div>Still 5♣ 7♠ — the six never came. He bets.
+  The chart: <span class="mix"><span class="fold">fold 53%</span> ·
+  <span class="callw">call 30%</span> · <span class="betw">raise 18%</span></span></div>
+</div>
+
+<p>On the river there are no more outs, no more categories to change into.
+Every hand is finally just a number. And the chart — which on this street is
+an <em>exact</em> solve of your hand against his precise range — says
+something that looks like a misprint: call thirty percent. With seven-high.</p>
+
+<p>It is not a misprint; it is the sharpest lesson in the book.
+<strong>Showdown value is relative, not absolute.</strong> To call a river
+bet you don't need a good hand — you need to beat his <em>bluffs</em>, and
+his bluffs are drawn from the same population as yours: busted draws. On this
+board his bluffing range is full of six-five, five-trey, missed hearts — and
+seven-high is a monarch among busted draws. The solver counted his exact
+combos against your exact cards and found that, at nine to one, calling with
+the best of the trash shows a profit. Folding is still the headline — the
+bluff's story failed, and 53% of the time you accept that. And 18% of the
+time seven-high tells one last lie, raising to fold out the thin hands that
+beat you at showdown.</p>
+
+<p>Three actions, all correct. Which brings us to the strangest habit of
+solved poker.</p>
+
+<h2><span class="no">VI.</span> On mixing, and when to ignore it</h2>
+<p class="epigraph">What 53/30/18 actually asks of you.</p>
+
+<p>When the chart splits an action three ways, it is not hedging. At
+equilibrium, every action it mixes has <em>exactly equal expected value</em>
+— that equality is the mathematical condition that makes the strategy
+unexploitable. The mixing exists to deny your opponent information: if you
+raised every strong hand and folded every weak one, your frequencies would
+tell him what you hold.</p>
+
+<p>This licenses two practical rules that sound contradictory and aren't:</p>
+
+<ul>
+<li><strong>When the chart says 90/10, take the 90.</strong> Against
+opponents who aren't modeling your frequencies — which is every bot on this
+ladder and nearly every human you'll meet — always taking the majority action
+costs almost nothing, and simplicity is worth more than theater.</li>
+<li><strong>When the chart says 53/30/18, the choice is free.</strong> All
+three are equal-EV; the meter will charge you nothing for any of them. These
+are the spots to enjoy — raise seven-high once and feel what it's like to
+bluff with the math's blessing.</li>
+</ul>
+
+<p>The expensive decisions are neither of these. They are the 98/2 spots
+where you take the 2. Which is why this room has a meter.</p>
+
+<h2><span class="no">VII.</span> The leak — the number you train on</h2>
+<p class="epigraph">Results are luck-soaked. Decisions are not.</p>
+
+<p>A poker result tells you almost nothing — a 40-hand match between a master
+and a novice is close to a coin flip. This is poker's great pedagogical
+curse: the feedback is a liar. Chess punishes your blunder on the spot; poker
+pays your blunders for weeks, then fines your best play, and lets you learn
+the wrong lesson from both.</p>
+
+<p>The Wardroom's answer is to grade the <em>decision</em>, not the result.
+On every river you play, the exact solver computes what each action was worth
+against the opponent's real range and charges you the difference between what
+you chose and the best available, in big blinds. The running total, per
+hundred hands, is your <strong>leak</strong> — the 🎯 number in the top bar.
+It cannot be flattered by winning or slandered by losing. It is the rate at
+which you give chips away, measured in the only currency that compounds.</p>
+
+<table>
+<tr><th>Player</th><th>River leak, bb/100</th></tr>
+<tr><td>Cepheus (solved play)</td><td>~0.1</td></tr>
+<tr><td>This room's bot</td><td>~0 by construction</td></tr>
+<tr><td>Estimated peak humans</td><td>1–5</td></tr>
+<tr><td>The historical pro bar</td><td>&lt; 5</td></tr>
+</table>
+
+<p>The training loop, then — the whole method of this room in four steps:</p>
+
+<ol>
+<li><strong>Play unaided.</strong> Casual mode, coach off, real decisions.</li>
+<li><strong>Read the scorecard.</strong> The trophy screen lists every hand
+with the river EV it paid, color-coded. Green is clean. Red is curriculum.</li>
+<li><strong>Replay the red rows.</strong> Click them. Both hands face up, every
+action annotated with the chart's preference and your exact bill. Ask of each
+red line: <em>what did his range look like that made the chart want
+otherwise?</em></li>
+<li><strong>Copy the stubborn ones.</strong> The 📋 button puts the whole
+annotated hand on your clipboard — take it to a friend, a forum, or an AI
+and argue about it. The numbers travel with the text.</li>
+</ol>
+
+<p>Do this for an evening and you'll have what almost no poker player in
+history had before 2015: an exact, luck-free measurement of your own skill,
+drifting downward as you learn. Keep it under five and you are making
+decisions at a rate the folklore era would have called professional.</p>
+
+<h2><span class="no">VIII.</span> The passage to no-limit</h2>
+<p class="epigraph">Why learn a solved game first.</p>
+
+<p>Fixed-limit heads-up is the right first game precisely <em>because</em> it
+is solved and small: the bets are fixed, so every lesson is about
+<em>frequencies</em> — when to bet, not how much. That is the skeleton of all
+poker. No-limit adds one enormous axis — bet <em>sizing</em> — which roughly
+doubles the theory but changes none of the bones. Ranges, polarization,
+bluff-candidate selection, relative showdown value: everything in this book
+survives the crossing intact.</p>
+
+<p>When you're ready for the crossing, the advanced shelf, in reading order:</p>
+
+<ul>
+<li><strong>Will Tipton, <em>Expert Heads Up No Limit Hold'em</em>, vols. 1–2</strong>
+— the heads-up no-limit text; builds the game from decision trees and
+equilibria, the same frame this room runs on.</li>
+<li><strong>Chen &amp; Ankenman, <em>The Mathematics of Poker</em></strong> —
+toy games and sizing theory from first principles; the theory companion.</li>
+<li><strong>Michael Acevedo, <em>Modern Poker Theory</em></strong> — the best
+solver-era synthesis.</li>
+<li><strong>Kevin Rabichow's heads-up no-limit courses</strong> (Run It Once)
+— the most structured modern HUNL curriculum on video.</li>
+<li>For history and appetite: Cepheus (2015) solved this game; Libratus
+(2017) and Pluribus (2019) then beat the world's best at no-limit. You are
+training against the first of that dynasty every time you sit down here.</li>
+</ul>
+
+<h2><span class="no">IX.</span> The room itself</h2>
+<p class="epigraph">A field guide to the instruments.</p>
+
+<table>
+<tr><th>Instrument</th><th>What it does</th><th>Key</th></tr>
+<tr><td>💡 hint</td><td>shows the chart's mix for one decision (flagged, not counted)</td><td></td></tr>
+<tr><td>🎓 coach</td><td>shows the mix on every decision — training wheels</td><td><span class="kbd">4</span></td></tr>
+<tr><td>🎯 leak chip</td><td>live running river leak, bb/100</td><td><span class="kbd">5</span></td></tr>
+<tr><td>📋 chart room</td><td>accuracy, leak headline, every graded decision</td><td></td></tr>
+<tr><td>scorecard</td><td>on the trophy screen: hand · cards · river EV paid; click any row to replay</td><td></td></tr>
+<tr><td>📋 copy (in replay)</td><td>the annotated hand as plain text, for any analyst</td><td></td></tr>
+<tr><td>🏅 rated</td><td>assistance structurally removed; your rating on the line; everything revealed only after</td><td></td></tr>
+<tr><td>fold / call / raise</td><td>the only three verbs in the language</td><td><span class="kbd">1</span> <span class="kbd">2</span> <span class="kbd">3</span></td></tr>
+</table>
+
+<p>One habit recommendation to close. Play your learning sessions casual with
+the coach <em>off</em> and the leak chip <em>on</em> — make real decisions,
+watch the real bill. Save the coach for reviewing concepts, and save rated
+for when you want your number to mean something. The chart will still be
+there when the hand is over, patient as arithmetic, ready to tell you who
+was supposed to pay.</p>
+
+<hr class="rule">
+
+<div class="next" style="margin-top:80px;padding:22px 26px;background:var(--card);border:1px solid var(--line);border-radius:8px;text-align:center">
+  <div style="font-family:system-ui,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700">The ship's library</div>
+  <div style="margin-top:6px"><a href="beginner.html" style="font-weight:700;text-decoration:none">I. The Deckhand's Manual</a> · <a href="intermediate.html" style="font-weight:700;text-decoration:none">II. The Mate's Handbook</a></div>
+  <div style="color:var(--ink-soft);font-style:italic;margin-top:4px">started in the middle? the earlier watches are shorter</div>
+</div>
+
+<p class="fin">⚓<br>written aboard, between hands</p>
+
+</div>
+</body>
+</html>

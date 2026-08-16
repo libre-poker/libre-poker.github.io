@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Deckhand's Manual — poker's first real lessons</title>
+<meta name="description" content="Book One of the ship's library: for the player who knows the rules and nothing else. Hand strength is relative, position is money, the pot lays you a price, and patience is a weapon.">
+<meta property="og:title" content="The Deckhand's Manual">
+<meta property="og:description" content="Poker's first real lessons, for the player who knows the rules: what you actually hold, why position is money, how to read the pot's price, and the one mistake that costs beginners the most.">
+<meta property="og:image" content="https://librepoker.org/og-beginner.png">
+<meta property="og:url" content="https://librepoker.org/beginner.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --paper:#faf6ef; --ink:#2a2520; --ink-soft:#6b6259; --line:#e3dccd;
+    --gold:#a07d2a; --red:#b0413e; --green:#2e7d43; --navy:#274060;
+    --card:#fffdf8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:18px; line-height:1.75;
+  }
+  .page{max-width:680px;margin:0 auto;padding:56px 24px 120px}
+  header{margin-bottom:52px;text-align:center}
+  header .flag{font-size:13px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;font-family:system-ui,sans-serif;font-weight:700}
+  h1{font-size:40px;line-height:1.2;margin:14px 0 10px;font-weight:700}
+  header .sub{color:var(--ink-soft);font-style:italic;font-size:19px}
+  .library{
+    margin:22px auto 0;font-family:system-ui,sans-serif;font-size:12.5px;
+    letter-spacing:.06em;color:var(--ink-soft);
+  }
+  .library a{color:var(--navy);text-decoration:none}
+  .library a:hover{text-decoration:underline}
+  .library b{color:var(--gold)}
+  h2{font-size:26px;margin:72px 0 6px;line-height:1.3}
+  h2 .no{color:var(--gold);font-style:italic;margin-right:10px}
+  .epigraph{color:var(--ink-soft);font-style:italic;margin:0 0 22px;font-size:16px}
+  p{margin:0 0 20px}
+  .r{color:var(--red)}
+  .hand{
+    background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:18px 22px;margin:26px 0;font-size:16.5px;
+    box-shadow:0 1px 3px rgba(60,50,30,.06);
+  }
+  .hand .street{font-family:system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--gold);margin-top:10px}
+  .hand .street:first-child{margin-top:0}
+  .rule{border:none;border-top:1px solid var(--line);margin:40px auto;width:120px}
+  .maxim{
+    margin:30px 0;padding:16px 24px;border-left:3px solid var(--gold);
+    background:#f4eee1;font-size:19px;font-style:italic;border-radius:0 6px 6px 0;
+  }
+  table{width:100%;border-collapse:collapse;margin:24px 0;font-size:16px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{font-family:system-ui,sans-serif;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  td:last-child,th:last-child{text-align:right}
+  .kbd{font-family:ui-monospace,monospace;background:#efe9db;border:1px solid var(--line);border-radius:4px;padding:1px 7px;font-size:14.5px}
+  ul,ol{margin:0 0 20px 26px}
+  li{margin-bottom:8px}
+  .next{
+    margin-top:80px;padding:22px 26px;background:var(--card);
+    border:1px solid var(--line);border-radius:8px;text-align:center;
+  }
+  .next .lbl{font-family:system-ui,sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .next a{color:var(--navy);font-size:20px;font-weight:700;text-decoration:none}
+  .next a:hover{text-decoration:underline}
+  .fin{text-align:center;color:var(--ink-soft);font-style:italic;margin-top:60px}
+  a{color:var(--navy)}
+  @media (max-width:520px){ body{font-size:16.5px} h1{font-size:31px} }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="flag">⚓ The Wardroom · Book One</div>
+  <h1>The Deckhand's Manual</h1>
+  <div class="sub">Poker's first real lessons, for the player who knows the
+  rules and nothing else</div>
+  <nav class="library"><b>The ship's library:</b>
+    I. The Deckhand's Manual ·
+    <a href="intermediate.html">II. The Mate's Handbook</a> ·
+    <a href="tutorial.html">III. The Wardroom Primer</a></nav>
+</header>
+
+<p>You know what beats what. You know the blinds go in, the cards come, and
+the betting travels around. That makes you a deckhand: aboard, useful,
+and — until this book is done — a source of steady income for everyone else
+at the table. The rules of poker are five minutes; the game hides behind
+them. This manual holds the six lessons that get you from knowing the rules
+to no longer being the mark, and every one of them can be practiced tonight
+against the ship's own characters, in a room that will tell you honestly how
+it's going.</p>
+
+<h2><span class="no">I.</span> You don't have a hand — you have a hand on a board</h2>
+<p class="epigraph">Strength is relative, and the board sets the exchange rate.</p>
+
+<p>The rankings chart says a pair beats high card and two pair beats one.
+True, and nearly useless. The first real lesson is that the same holding is
+a monster on one board and a liability on another. A pair of tens is
+delightful on <b>10♠ <span class="r">6♦</span> 2♣</b> — top pair, nothing
+sensible ahead of it. The same tens on
+<b>A♠ K♠ <span class="r">Q♥</span></b> are a mess: one pair, four kinds of
+better pair in easy reach, straights already possible. Nothing about your
+cards changed. The board changed what they mean.</p>
+
+<p>So train this reflex before any other: when the flop lands, don't look at
+your hand and ask “what do I have?” Look at the <em>board</em> and ask two
+questions —</p>
+
+<ul>
+<li><strong>What's the best hand my cards make with these five?</strong>
+(Beginners routinely misread — count it out.)</li>
+<li><strong>What better hands does this board offer someone else?</strong>
+Pairs above mine? A flush possible? A straight already there?</li>
+</ul>
+
+<p>Top pair on a quiet board is treasure. Third pair on a coordinated board
+is a polite way to lose money. Learn to tell them apart at a glance and
+you've passed the first watch.</p>
+
+<h2><span class="no">II.</span> Fold. Yes, again.</h2>
+<p class="epigraph">Patience is not a virtue here; it is a weapon.</p>
+
+<p>The most profitable button on the table is the red one. Beginners lose
+most of their money before the flop, by paying to see it with cards that were
+never going anywhere — the ragged aces, the pretty-looking 9-4 suited, the
+“any two can win” superstition. Any two <em>can</em> win. Most two
+<em>don't</em>, and they cost money the whole way to finding out.</p>
+
+<p>Here is the honest arithmetic of it: when you start with the better hand,
+everything afterward is easier — your top pairs have better kickers, your
+two pairs are higher, your coin flips are weighted. Folding weak starts isn't
+timid; it is choosing to fight only where you outgun. In the six-handed game,
+that means folding most of what you're dealt without regret. (Heads-up —
+this room's specialty — you'll play far looser, because with only two hands
+dealt, mediocre cards are often the best cards. The principle survives: play
+the hands that figure to be <em>ahead of the opponent's</em>, and that
+depends on how many opponents there are.)</p>
+
+<div class="maxim">Every chip you don't lose is a chip won. The fold is the
+only bet that never loses.</div>
+
+<h2><span class="no">III.</span> Position is money</h2>
+<p class="epigraph">Acting last is a permanent, legal advantage.</p>
+
+<p>In every betting round, someone must act first and someone gets to act
+last — and the player acting last makes every decision knowing what the
+other did. They check to you? You may take the pot with a bet. They bet? You
+fold your junk having lost nothing extra. The player acting last simply
+receives more information before every choice, on every street, for the
+whole hand — and in a game of information, that compounds into real money.</p>
+
+<p>The practical rules a deckhand can apply tonight:</p>
+
+<ul>
+<li><strong>Play more hands when you'll act last</strong> (on or near the
+button), fewer when you'll act first.</li>
+<li><strong>Out of position, prefer strong, simple hands</strong> — the ones
+that don't need delicate judgment on every street, because you'll be making
+those judgments half-blind.</li>
+<li>When you're unsure whether a marginal hand is playable, let position
+break the tie: last says play, first says fold.</li>
+</ul>
+
+<h2><span class="no">IV.</span> The pot lays you a price</h2>
+<p class="epigraph">Every call is a purchase. Learn to read the tag.</p>
+
+<p>You face a bet of 40, and the pot — everything already in the middle,
+including that bet — is 200. The table is offering you a deal: pay 40 for a
+chance at 200. Five to one. That means the call doesn't need to win half the
+time to be right. It needs to win <em>one time in six</em>.</p>
+
+<div class="hand">
+  <div class="street">The price, in one line</div>
+  <div>call ÷ (pot + call) = the winning chance you need.
+  40 ÷ 240 = 1 in 6 ≈ 17%.</div>
+</div>
+
+<p>This single fraction converts poker from vibes to arithmetic. A hand
+worth abandoning against a huge bet is often worth keeping against a small
+one — not because the hand changed, but because the price did. From today,
+never call by feel. Glance at the pot, glance at the bet, and know the
+number you're being asked to beat.</p>
+
+<h2><span class="no">V.</span> Outs, and the deck's arithmetic</h2>
+<p class="epigraph">Hope, counted.</p>
+
+<p>When you don't yet have the best hand, your chance of getting there is
+countable. Cards that improve you to the winner are <strong>outs</strong>. A
+flush draw after the flop: thirteen of your suit, minus the four you can
+see, is nine outs. An open-ended straight draw: eight. A gutshot: four.</p>
+
+<p>And the deckhand's rule of thumb, accurate enough for a lifetime:
+<strong>outs × 2 ≈ your percentage per coming card</strong> (× 4 if two cards
+are still to come). Nine outs on the flop ≈ 36% to get there by the river;
+one card to come ≈ 18%.</p>
+
+<p>Now marry it to the last chapter and you're doing real poker: the pot
+offers 5-to-1 (need 17%), you hold a flush draw at 18% for the next card —
+the call is correct, and no feeling was consulted at any point. Two numbers,
+one comparison. That comparison, made honestly on every street, is most of
+what “good” means at this stage.</p>
+
+<h2><span class="no">VI.</span> Don't pay people off</h2>
+<p class="epigraph">The single most expensive habit in beginner poker.</p>
+
+<p>Here is where beginners' money actually goes. It isn't the wild bluffs —
+beginners don't bluff much. It goes like this: they make a decent-but-modest
+hand — second pair, a weak top pair — someone starts betting at them,
+betting bigger, raising — and they call, and call, and call, muttering “I
+have to see it,” all the way to the truth. The truth was available earlier,
+at a discount.</p>
+
+<p>When quiet opponents suddenly play loud — when the bets grow street after
+street into a big pot — a modest made hand shrinks. Not to zero: sometimes
+they're bluffing, and the pot's price can justify one look. But
+<em>repeatedly</em> paying big bets with one modest pair is the leak that
+funds everyone else's evening. The discipline is unglamorous and worth more
+than any fancy move in this book:</p>
+
+<div class="maxim">Big pots are for big hands. When the pot grows loud and
+yours is modest, believe people.</div>
+
+<h2><span class="no">VII.</span> Practicing in this room</h2>
+<p class="epigraph">The instruments, set for training wheels.</p>
+
+<p>The Wardroom is built for exactly this stage of the voyage. A practical
+setup for a deckhand's session:</p>
+
+<ul>
+<li><strong>Start at the six-handed table</strong> against the ship's five
+characters — they play their natures (the rock, the maniac, the calling
+station), and learning to name those natures is a lesson this manual
+couldn't fit.</li>
+<li><strong>Switch to heads-up (⚔) with the 💡 hint</strong> when curious —
+one press shows how the trained strategy would mix the decision you're
+facing. Use it <em>after</em> deciding, as a check, not before, as a
+crutch.</li>
+<li><strong>Keys:</strong> <span class="kbd">1</span> fold,
+<span class="kbd">2</span> check/call, <span class="kbd">3</span> bet/raise.
+The chart room 📋 keeps your report card.</li>
+</ul>
+
+<p>And a session ritual worth adopting from day one: after each match, open
+the scorecard on the trophy screen and click the hands that cost you. Both
+hands shown, every action annotated. You will discover — everyone discovers
+— that the losses cluster in chapters V and VI: prices misread, people paid
+off. That discovery, made with your own hands as the evidence, is this whole
+manual taking hold.</p>
+
+<hr class="rule">
+
+<p>That's the deckhand's watch: read the board, fold without grief, sit
+where you act last, read the price, count your outs, and keep your chips out
+of other people's big hands. None of it is clever. All of it is money. When
+these six feel less like rules and more like reflexes, you're ready for the
+officer's track — where hands stop being cards and become
+<em>ranges</em>.</p>
+
+<div class="next">
+  <div class="lbl">Next in the ship's library</div>
+  <a href="intermediate.html">Book Two — The Mate's Handbook</a>
+  <div style="color:var(--ink-soft);font-style:italic;margin-top:4px">
+  from rules to reasons: ranges, equity, and the two reasons to bet</div>
+</div>
+
+<p class="fin">⚓<br>written aboard, between hands</p>
+
+</div>
+</body>
+</html>
