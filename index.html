@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Libre Poker — poker as a sport, not a casino product</title>
+<meta name="description" content="Rake-free, open source, provably fair. Play a near-unexploitable solved-game trainer, measure your skill in exact big blinds, and build a career no platform can confiscate. The house always wins — so there is no house.">
+<meta property="og:title" content="Libre Poker">
+<meta property="og:description" content="Poker as a sport, not a casino product. Rake-free forever, provably fair, machines are citizens, your career is a chain. The house always wins — so there is no house.">
+<meta property="og:image" content="https://librepoker.github.io/og-librepoker.png">
+<meta property="og:url" content="https://librepoker.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --paper:#faf6ef; --ink:#2a2520; --ink-soft:#6b6259; --line:#e3dccd;
+    --gold:#a07d2a; --red:#b0413e; --green:#2e7d43; --navy:#274060;
+    --card:#fffdf8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:18px; line-height:1.7;
+  }
+  .page{max-width:760px;margin:0 auto;padding:64px 24px 100px}
+  header{text-align:center;margin-bottom:56px}
+  .suits{font-size:26px;letter-spacing:.35em;margin-bottom:14px}
+  .suits .r{color:var(--red)}
+  h1{
+    font-size:54px;line-height:1.1;font-weight:700;letter-spacing:.01em;
+  }
+  h1 .libre{color:var(--gold)}
+  .tag{font-size:21px;font-style:italic;color:var(--ink-soft);margin-top:10px}
+  .motto{
+    margin:34px auto 0;max-width:520px;padding:14px 26px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    font-size:20px;font-style:italic;
+  }
+  .doors{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:16px;margin:52px 0 8px;
+  }
+  .door{
+    display:block;background:var(--card);border:1px solid var(--line);
+    border-radius:10px;padding:22px 22px 18px;text-decoration:none;
+    color:var(--ink);box-shadow:0 1px 3px rgba(60,50,30,.06);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .door:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(60,50,30,.10)}
+  .door .k{font-family:system-ui,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  .door .t{font-size:22px;font-weight:700;margin:6px 0 4px}
+  .door .d{font-size:15px;color:var(--ink-soft);line-height:1.55}
+  h2{font-size:24px;margin:64px 0 14px}
+  p{margin:0 0 18px}
+  .inv{list-style:none;margin:0 0 8px}
+  .inv li{
+    padding:10px 0 10px 30px;border-bottom:1px solid var(--line);
+    position:relative;font-size:16.5px;
+  }
+  .inv li::before{content:'♠';position:absolute;left:4px;color:var(--gold);font-size:14px}
+  .inv li b{font-weight:700}
+  .status{
+    margin-top:14px;font-size:15px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:14px 20px;line-height:1.8;
+  }
+  .status b{color:var(--green);font-family:system-ui,sans-serif;font-size:11.5px;
+    letter-spacing:.08em;border:1px solid var(--green);border-radius:4px;
+    padding:1px 7px;margin-right:8px;vertical-align:1px}
+  footer{
+    margin-top:80px;padding-top:24px;border-top:1px solid var(--line);
+    text-align:center;font-size:14.5px;color:var(--ink-soft);
+  }
+  footer a{color:var(--navy)}
+  a{color:var(--navy)}
+  @media (max-width:560px){ h1{font-size:38px} .tag{font-size:18px} }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="suits">♠ <span class="r">♥</span> <span class="r">♦</span> ♣</div>
+  <h1><span class="libre">Libre</span> Poker</h1>
+  <div class="tag">Poker as a sport, not a casino product</div>
+  <div class="motto">The house always wins — so there is no house.</div>
+</header>
+
+<div class="doors">
+  <a class="door" href="https://tide-games.github.io/wardroom/">
+    <div class="k">Play</div>
+    <div class="t">⚓ The Wardroom</div>
+    <div class="d">Heads-up against a near-unexploitable solved-game trainer —
+    Cepheus preflop, exact river solves, a leak meter that grades every
+    decision in big blinds, scorecards, and on-table replays.</div>
+  </a>
+  <a class="door" href="https://tide-games.github.io/wardroom/beginner.html">
+    <div class="k">Learn</div>
+    <div class="t">📚 The Library</div>
+    <div class="d">Three short books, Deckhand to Primer: from knowing the
+    rules to reading the mind of a solved game — every example a real hand
+    with the solver's actual numbers.</div>
+  </a>
+  <a class="door" href="https://github.com/tide-games/wardroom/blob/gh-pages/LIBREPOKER.md">
+    <div class="k">Read</div>
+    <div class="t">📜 The Constitution</div>
+    <div class="d">Seven invariants that do not move, the architecture that
+    follows from them, and the honest blocker named out loud. What Libre
+    Poker is — and what it will never be.</div>
+  </a>
+</div>
+
+<h2>The argument in one paragraph</h2>
+<p>Online poker is dying of two diseases, and both are business models: the
+rake, which makes even-matched play a slow donation, and the trust
+collapse — unauditable shuffles, invisible machines, platforms whose
+incentive is your losing slowly enough to stay. Libre Poker's answer to
+both is the same answer: <em>remove the house</em>. No rake, because there
+is no one to collect it. No trusted dealer — shuffles are committed before
+play and every hand replays from its seed. No bot paranoia: machines play
+openly under their own flag, and what's at stake is not a balance but a
+<em>reputation</em> — signed, replayable, anchored in Bitcoin time,
+impossible to backdate and impossible to confiscate. The score is the
+measurement: your rating, and your leak in exact big blinds against
+equilibrium. Poker where the better player wins, and can prove it.</p>
+
+<h2>The invariants</h2>
+<ul class="inv">
+  <li><b>Rake-free forever.</b> No cut of any pot, under any name. If the
+  project needs money it asks, as lichess asks.</li>
+  <li><b>Libre.</b> All code open source, all specs public, all formats
+  documented. Fork the world.</li>
+  <li><b>No server owns the truth.</b> Matches, ratings, and careers live
+  in signed transcripts anyone can replay. Hosts are conveniences.</li>
+  <li><b>Provable fairness or honest absence.</b> Where a guarantee can't
+  yet be delivered, the gap is stated — never staged.</li>
+  <li><b>Machines are citizens.</b> Declared agents play openly, rated in
+  the same pool, flagged everywhere they appear.</li>
+  <li><b>Identity is a keypair.</b> Pseudonymous by default, portable
+  across rooms, owned by no platform.</li>
+  <li><b>The measurement is sacred.</b> No number appears on a board that
+  a reader cannot recompute from public data.</li>
+</ul>
+
+<h2>Live today</h2>
+<div class="status">
+  <div><b>LIVE</b>The Wardroom: real engine, committed shuffles, solved-game
+  trainer verified ≈ unexploitable by Local Best Response</div>
+  <div><b>LIVE</b>The leak meter: exact river EV grading, scorecards,
+  steppable on-table replays, hands that travel as text</div>
+  <div><b>LIVE</b>The library: three books, Deckhand to Primer</div>
+  <div><b>NEXT</b>The Ledger: per-identity match chains, signed transcripts,
+  a static board that recomputes every rating in your browser</div>
+</div>
+
+<footer>
+  <div>♠ <a href="https://github.com/librepoker">github.com/librepoker</a>
+  · built in the open, hosted on pages, owned by its players</div>
+</footer>
+
+</div>
+</body>
+</html>
